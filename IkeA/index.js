@@ -5,7 +5,7 @@ const axios = require('axios')
 app.use(express.json())
 
 // Create a GET route with a path of /getAllPeople
-app.get('/getAllPeople', function (req, res)
+app.get('/getAllPeople', (req, res) =>
 {
     console.log(req.body)
 
@@ -13,20 +13,20 @@ app.get('/getAllPeople', function (req, res)
 
     // Call URL - http://java-sample-api-2020.herokuapp.com/getAllPeople
     axios.get('http://java-sample-api-2020.herokuapp.com/getAllPeople', body)
-        .then(function (apiResponse)
+        .then((apiResponse) =>
         {
             console.log(apiResponse.data)
             res.status(200).json(apiResponse.data)
         })
         // catch error
-        .catch(function (error)
+        .catch((error) =>
         {
             res.status(500).json({ 'message': 'There was an error' })
         })
 })
 
 // Create a POST route with a path of /addPerson
-app.post('/addPerson', function (req, res)
+app.post('/addPerson', (req, res) =>
 {
     console.log(req.body)
 
@@ -34,20 +34,20 @@ app.post('/addPerson', function (req, res)
 
     // Call URL - http://java-sample-api-2020.herokuapp.com/addPerson
     axios.post('http://java-sample-api-2020.herokuapp.com/addPerson', body)
-        .then(function (apiResponse)
+        .then((apiResponse) =>
         {
             console.log(apiResponse.data)
             res.status(200).json({ 'message': 'Person added successfully' })
         })
         // catch error
-        .catch(function (error)
+        .catch((error) =>
         {
             res.status(500).json({ 'message': 'There was an error' })
         })
 })
 
 // Create a DELETE route with a path of /deletePerson
-app.delete('/deletePerson/:UserId', function (req, res)
+app.delete('/deletePerson/:UserId', (req, res) =>
 {
     console.log(req.body)
 
@@ -55,13 +55,13 @@ app.delete('/deletePerson/:UserId', function (req, res)
 
     // Call URL - http://java-sample-api-2020.herokuapp.com/deletePerson/:UserId
     axios.delete('http://java-sample-api-2020.herokuapp.com' + req.path, body)
-        .then(function (apiResponse)
+        .then((apiResponse) =>
         {
             console.log(apiResponse.data)
             res.status(200).json({ 'message': 'Person deleted successfully!' })
         })
         // catch error
-        .catch(function (error)
+        .catch((error) =>
         {
             res.status(500).json({ 'message': 'There was an error' })
         })
