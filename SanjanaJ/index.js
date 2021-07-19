@@ -52,7 +52,7 @@ app.delete('deletePerson', function (postmanRequest, postmanResponse) {
     const body = postmanRequest.body
 
     // delete person and display message
-    axios.delete('http://java-sample-api-2020.herokuapp.com/deletePerson?id=' + req.query['id'], body)
+    axios.delete('http://java-sample-api-2020.herokuapp.com/deletePerson?id=' + postmanRequest.query['id'], body)
     .then(function(apiResponse) {
         console.log(apiResponse.data)
         postmanResponse.status(200).json({'message': 'person deleted'})
@@ -65,4 +65,4 @@ app.delete('deletePerson', function (postmanRequest, postmanResponse) {
 })
 
 // tells API to listen for incoming requests
-app.listen(8080, () => console.log('Example app listening at https//localhost:8080'))
+app.listen(8080, () => console.log('Example app listening at http//localhost:8080'))
