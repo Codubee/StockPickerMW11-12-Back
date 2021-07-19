@@ -51,11 +51,14 @@ app.delete('deletePerson', function (postmanRequest, postmanResponse) {
 
     const body = postmanRequest.body
 
-    axios.delete('http://java-sample-api-2020.herokuapp.com/addPerson', body)
+    // delete person and display message
+    axios.delete('http://java-sample-api-2020.herokuapp.com/deletePerson?id=' + req.query['id'], body)
     .then(function(apiResponse) {
         console.log(apiResponse.data)
-        postmanResponse.status(200).json({'message': 'person added'})
+        postmanResponse.status(200).json({'message': 'person deleted'})
     })
+
+    // catch error and display error message
     .catch(function(err) {
         postmanResponse.status(500).json({'message': 'there was an error'})
     })
