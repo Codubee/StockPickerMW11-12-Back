@@ -65,4 +65,4 @@ app.delete('deletePerson', function (postmanRequest, postmanResponse) {
 })
 
 // tells API to listen for incoming requests
-app.listen(8080, () => console.log('Example app listening at http//localhost:8080'))
+app.listen(8080, () => console.log('Example app listening at http://localhost:8080'))
