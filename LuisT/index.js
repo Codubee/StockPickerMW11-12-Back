@@ -27,9 +27,7 @@ app.post('/addPerson', (req, res) => {
 app.get('/getAllPeople', (req, res) => {
     //console.log(req.body);
 
-    const body = req.body;
-
-    axios.get('http://java-sample-api-2020.herokuapp.com/getAllPeople', body)
+    axios.get('http://java-sample-api-2020.herokuapp.com/getAllPeople')
     .then( apiResponse => {
         //console.log(apiResponse.data);
         res.status(200).json(apiResponse.data);
@@ -46,10 +44,9 @@ app.delete('/deletePerson', (req, res) => {
     // console.log(req.params);
     // console.log(req.query);
     
-    const idNum = req.query['id'];    
-    const body = req.body;
+    const idNum = req.query['id'];
 
-    axios.delete('http://java-sample-api-2020.herokuapp.com/deletePerson?id=' + idNum, body)
+    axios.delete('http://java-sample-api-2020.herokuapp.com/deletePerson?id=' + idNum)
     .then( apiResponse => {
         //console.log(apiResponse.data);
         res.status(200).json({'message':'person deleted'});
