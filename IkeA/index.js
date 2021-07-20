@@ -7,8 +7,6 @@ app.use(express.json())
 // Create a POST route with a path of /addPerson
 app.post('/addPerson', (req, res) =>
 {
-    console.log(req.body)
-
     const body = req.body
 
     // Call URL - http://java-sample-api-2020.herokuapp.com/addPerson
@@ -28,8 +26,6 @@ app.post('/addPerson', (req, res) =>
 // Create a GET route with a path of /getAllPeople
 app.get('/getAllPeople', (req, res) =>
 {
-    console.log(req.body)
-
     // Call URL - http://java-sample-api-2020.herokuapp.com/getAllPeople
     axios.get('http://java-sample-api-2020.herokuapp.com/getAllPeople')
         .then((apiResponse) =>
@@ -47,8 +43,6 @@ app.get('/getAllPeople', (req, res) =>
 // Create a DELETE query route with a path of /deletePerson
 app.delete('/deletePerson', (req, res) =>
 {
-    console.log(req.query['id'])
-
     const idNumber = req.query['id']
 
     // New URL - https://java-sample-api-2020.herokuapp.com/deletePerson?id=1
@@ -65,5 +59,5 @@ app.delete('/deletePerson', (req, res) =>
         })
 })
 
-// Tell our API to listen for incoming requests
+// Tells our API to listen for incoming requests
 app.listen(8080, () => console.log('Example app listening at http://localhost:8080'))
