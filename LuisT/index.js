@@ -8,13 +8,11 @@ app.use(express.json())
 // Creates a POST route with a path of /addPerson
 // Calls the URL: http://java-sample-api-2020.herokuapp.com/addPerson
 app.post('/addPerson', (req, res) => {
-    //console.log(req.body);
 
     const body = req.body;
 
     axios.post('http://java-sample-api-2020.herokuapp.com/addPerson', body)
     .then( apiResponse => {
-        //console.log(apiResponse.data);
         res.status(200).json({'message':'person added'});       // Confirm success
     })
     .catch(function(err) {
@@ -25,11 +23,9 @@ app.post('/addPerson', (req, res) => {
 // Creates a GET route with a path of /getAllPeople
 // Calls the URL: http://java-sample-api-2020.herokuapp.com/getAllPeople
 app.get('/getAllPeople', (req, res) => {
-    //console.log(req.body);
 
     axios.get('http://java-sample-api-2020.herokuapp.com/getAllPeople')
     .then( apiResponse => {
-        //console.log(apiResponse.data);
         res.status(200).json(apiResponse.data);
     })
     .catch(function(err) {
@@ -40,15 +36,11 @@ app.get('/getAllPeople', (req, res) => {
 // Creates a DELETE route with a path of /deletePerson/:UserId
 // Calls the URL: http://java-sample-api-2020.herokuapp.com/deletePerson/:UserId
 app.delete('/deletePerson', (req, res) => {
-    // console.log(req.body);
-    // console.log(req.params);
-    // console.log(req.query);
     
     const idNum = req.query['id'];
 
     axios.delete('http://java-sample-api-2020.herokuapp.com/deletePerson?id=' + idNum)
     .then( apiResponse => {
-        //console.log(apiResponse.data);
         res.status(200).json({'message':'person deleted'});
     })
     .catch(function(err) {
