@@ -40,7 +40,7 @@ app.delete('/deletePerson',(pRequest,pResponse) =>
     axios.delete('http://java-sample-api-2020.herokuapp.com/deletePerson?id=' + keyP)//deletes the specified person
     .then((herokuResponse) =>
     {
-         console.log(herokuResponse.data)
+        console.log(herokuResponse.data)
         pResponse.status(200).json(herokuResponse.data)
     })
     .catch((error) => //displays an error message if there is an issue
