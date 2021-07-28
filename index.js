@@ -7,7 +7,6 @@ app.use(express.json())
 app.post('/addStock', (req, res) =>
 {
     const body = req.body
-
     // Call URL - https://codubee-projects-api.herokuapp.com/stocks/addStock
     axios.post('https://codubee-projects-api.herokuapp.com/stocks/addStock', body)
         .then((apiResponse) =>
@@ -21,5 +20,4 @@ app.post('/addStock', (req, res) =>
             res.status(500).json({ 'message': 'There was an error' })
         })
 })
-
 app.listen(8080, () => console.log('Example app listening at http://localhost:8080'))
