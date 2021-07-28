@@ -16,6 +16,5 @@ app.get('/getMatches',(pRequest,pResponse) =>
         {
             pResponse.status(500).json({'message': 'User was not found'})
         })
-
 })
 app.listen(8080,() => console.log('Example app listening at http://localhost:8080'))
