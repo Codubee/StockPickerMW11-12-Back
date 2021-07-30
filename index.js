@@ -1,3 +1,4 @@
+const express = require('express')
 const app = express()
 const axios = require('axios')
 app.use(express.json())
@@ -9,7 +10,7 @@ app.get('/getStockData', (req, res) => {
     .then( apiResponse => {
         res.status(200).json(apiResponse.data);
     })
-    .catch( err => {
+    .catch( (err) => {
         res.status(200).json({'message':'there was an error getting stock from db'});
     })
 })
