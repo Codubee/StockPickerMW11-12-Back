@@ -11,7 +11,7 @@ app.get('/getStockData', (req, res) => {
         res.status(200).json(apiResponse.data);
     })
     .catch( (err) => {
-        res.status(200).json({'message':'there was an error getting stock from db'});
+        res.status(500).json({'message':'there was an error getting stock from db'});
     })
 })
 app.listen(8080, () => console.log('Example app listening at http://localhost:8080'))
