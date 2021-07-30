@@ -1,9 +1,10 @@
-const express = require('express')
 const app = express()
 const axios = require('axios')
 app.use(express.json())
+
+
 // Route to get a stock from the database of stocks.
-// Use GET route with a path of /
+// Use GET route with a path of /getStockData
 // Calls the URL: https://codubee-projects-api.herokuapp.com/stocks/getStockData
 app.get('/getStockData', (req, res) => {
     axios.get('https://codubee-projects-api.herokuapp.com/stocks/getStockData')
