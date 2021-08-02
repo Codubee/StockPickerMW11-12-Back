@@ -3,12 +3,12 @@ const app = express()
 const axios = require('axios')
 app.use(express.json())
 
-// creates a GET route to get all people
-// http://java-sample-api-2020.herokuapp.com/getAllPeople
+// creates a GET route to get the weather
+// https://codubee-projects-api.herokuapp.com/getWeather
 app.get('/getWeather', (postmanRequest, postmanResponse) =>
 {
     // get the weather
-    axios.get('https://codubee-projects-api.herokuapp.com')
+    axios.get('https://codubee-projects-api.herokuapp.com/getWeather')
     .then((apiResponse) =>
     {
         console.log(apiResponse.data)
