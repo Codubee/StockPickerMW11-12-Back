@@ -33,7 +33,6 @@ app.post('/addStock', (req, res) =>
             res.status(500).json({ 'message': 'There was an error' })
         })
 })
-
 //method used to get matches from the database
 app.get('/getMatches',(pRequest,pResponse) =>
 {
@@ -49,4 +48,4 @@ app.get('/getMatches',(pRequest,pResponse) =>
             pResponse.status(500).json({'message': 'User was not found'})
         })
 })
-app.listen(8080, () => console.log('Example app listening at http://localhost:8080'))
+app.listen( process.env.PORT || 8080, () => console.log('Example app listening at http://localhost:8080'))
