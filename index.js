@@ -36,7 +36,7 @@ app.post('/addStock', (req, res) =>
 //method used to get matches from the database
 app.get('/getMatches',(pRequest,pResponse) =>
 {
-    let keyP = pRequest.query.stockId//finds the id of the person that was passed in as a parameter
+    let keyP = pRequest.query.userId//finds the id of the person that was passed in as a parameter
     axios.get('https://codubee-projects-api.herokuapp.com/stocks/getMatches?userId=' + keyP)//gets the person who matches the specified id
     .then((herokuResponse) =>
     {
