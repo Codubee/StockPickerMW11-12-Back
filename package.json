@@ -19,7 +19,6 @@
     "axios": "^0.21.1",
     "concurrently": "^6.1.0",
     "cors": "^2.8.5",
-    "express": "^4.17.1",
-    "query-string": "^7.0.1"
+    "express": "^4.17.1"
   }
 }
