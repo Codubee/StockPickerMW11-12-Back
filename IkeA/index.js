@@ -1,9 +1,15 @@
 // Import libraries
+// const express = require('express')
+// const app = express()
+// const axios = require('axios')
+// app.use(express.json())
+// require('dotenv').config();
+
 const express = require('express')
 const app = express()
-const axios = require('axios')
-app.use(express.json())
+app.use(express.json());
 require('dotenv').config();
+const axios = require('axios');
 
 // Create a POST route with a path of /addPerson
 app.post('/addPerson', (req, res) =>
@@ -57,6 +63,27 @@ app.delete('/deletePerson', (req, res) =>
         .catch((error) =>
         {
             res.status(500).json({ 'message': 'There was an error' })
+        })
+})
+
+// Create a GET route with a path of /searchYelp to connect to yelps search api
+app.get('/searchYelp', (req, res) =>
+{
+
+    // Save the yelp token in a config variable
+    const config = { headers: { 'Authorization': 'Bearer ' + process.env.API_TOKEN } }
+
+    // Include the object that contains the token in the GET request
+    axios.get('https://api.yelp.com/v3/transactions/delivery/search?latitude=37.787789124691&longitude=-122.399305736113', config)
+        .then((yelpRes) =>
+        {
+            console.log(yelpRes.data)
+            res.json(yelpRes.data)
+        })
+        .catch((err) =>
+        {
+            console.log(err)
+            res.json({ "msg": "Error with request" })
         })
 })
 
