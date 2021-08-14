@@ -60,7 +60,7 @@ app.delete('/deletePerson', (req, res) =>
         })
 })
 
-// GET GET https://api.yelp.com/v3/businesses/search
+// GET https://api.yelp.com/v3/businesses/search
 // Create a GET route with a path of /searchYelp to connect to yelps search api
 app.get('/searchYelp', (req, res) =>
 {
