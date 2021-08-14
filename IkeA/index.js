@@ -60,6 +60,7 @@ app.delete('/deletePerson', (req, res) =>
         })
 })
 
+// GET GET https://api.yelp.com/v3/businesses/search
 // Create a GET route with a path of /searchYelp to connect to yelps search api
 app.get('/searchYelp', (req, res) =>
 {
@@ -86,7 +87,6 @@ app.get('/yelpEventDetail', (req, res) =>
 {
     // Save the yelp token in a config variable
     const config = { headers: { 'Authorization': 'Bearer ' + process.env.API_TOKEN } }
-
 
     var url = 'https://api.yelp.com/v3/events/oakland-saucy-oakland-restaurant-pop-up'
     console.log(url)
