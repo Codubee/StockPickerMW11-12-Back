@@ -63,12 +63,64 @@ app.delete('/deletePerson', (req, res) =>
 // Create a GET route with a path of /searchYelp to connect to yelps search api
 app.get('/searchYelp', (req, res) =>
 {
-
     // Save the yelp token in a config variable
     const config = { headers: { 'Authorization': 'Bearer ' + process.env.API_TOKEN } }
 
+    // Example url: https://api.yelp.com/v3/transactions/delivery/search?latitude=37.787789124691&longitude=-122.399305736113
+
     // Include the object that contains the token in the GET request
-    axios.get('https://api.yelp.com/v3/transactions/delivery/search?latitude=37.787789124691&longitude=-122.399305736113', config)
+    axios.get('https://api.yelp.com/v3/businesses/search?latitude=37.787789124691&longitude=-122.399305736113', config)
+        .then((yelpRes) =>
+        {
+            console.log(yelpRes.data)
+            res.json(yelpRes.data)
+        })
+        .catch((err) =>
+        {
+            console.log(err)
+            res.json({ "msg": "Error with request" })
+        })
+})
+
+// GET https://api.yelp.com/v3/events/{id}
+// Create a route to get the details of an event
+app.get('/yelpEventDetail', (req, res) =>
+{
+    // Save the yelp token in a config variable
+    const config = { headers: { 'Authorization': 'Bearer ' + process.env.API_TOKEN } }
+
+
+    var url = 'https://api.yelp.com/v3/events/oakland-saucy-oakland-restaurant-pop-up'
+    console.log(url)
+
+    // Include the object that contains the token in the GET request
+    axios.get(url, config)
+        .then((yelpRes) =>
+        {
+            console.log(yelpRes.data)
+            res.json(yelpRes.data)
+        })
+        .catch((err) =>
+        {
+            console.log(err)
+            res.json({ err })
+        })
+})
+
+// GET https://api.yelp.com/v3/events
+// Create a route to connect to yelps event api
+app.get('/yelpEventAPI', (req, res) =>
+{
+    // Save the yelp token in a config variable
+    const config = { headers: { 'Authorization': 'Bearer ' + process.env.API_TOKEN } }
+
+    var location = req.query.location
+    // var url = 'https://api.yelp.com/v3/events?latitude=37.787789124691&longitude=-122.399305736113' + location
+    var url = 'https://api.yelp.com/v3/events?location=' + location
+    console.log(url)
+
+    // Include the object that contains the token in the GET request
+    axios.get(url, config)
         .then((yelpRes) =>
         {
             console.log(yelpRes.data)
