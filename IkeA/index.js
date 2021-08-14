@@ -66,8 +66,6 @@ app.get('/searchYelp', (req, res) =>
     // Save the yelp token in a config variable
     const config = { headers: { 'Authorization': 'Bearer ' + process.env.API_TOKEN } }
 
-    // Example url: https://api.yelp.com/v3/transactions/delivery/search?latitude=37.787789124691&longitude=-122.399305736113
-
     // Include the object that contains the token in the GET request
     axios.get('https://api.yelp.com/v3/businesses/search?latitude=37.787789124691&longitude=-122.399305736113', config)
         .then((yelpRes) =>
@@ -115,7 +113,6 @@ app.get('/yelpEventAPI', (req, res) =>
     const config = { headers: { 'Authorization': 'Bearer ' + process.env.API_TOKEN } }
 
     var location = req.query.location
-    // var url = 'https://api.yelp.com/v3/events?latitude=37.787789124691&longitude=-122.399305736113' + location
     var url = 'https://api.yelp.com/v3/events?location=' + location
     console.log(url)
 
