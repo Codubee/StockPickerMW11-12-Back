@@ -71,7 +71,6 @@ app.get('/searchYelp', (req, res) =>
     axios.get('https://api.yelp.com/v3/businesses/search?latitude=37.787789124691&longitude=-122.399305736113', config)
         .then((yelpRes) =>
         {
-            console.log(yelpRes.data)
             res.json(yelpRes.data)
         })
         .catch((err) =>
@@ -95,7 +94,6 @@ app.get('/yelpEventDetail', (req, res) =>
     axios.get(url, config)
         .then((yelpRes) =>
         {
-            console.log(yelpRes.data)
             res.json(yelpRes.data)
         })
         .catch((err) =>
@@ -114,13 +112,11 @@ app.get('/yelpEventAPI', (req, res) =>
 
     var location = req.query.location
     var url = 'https://api.yelp.com/v3/events?location=' + location
-    console.log(url)
 
     // Include the object that contains the token in the GET request
     axios.get(url, config)
         .then((yelpRes) =>
         {
-            console.log(yelpRes.data)
             res.json(yelpRes.data)
         })
         .catch((err) =>
