@@ -70,4 +70,21 @@ app.get('/getWeather', (postmanRequest, postmanResponse) =>
     })
 })
 
+
+//Delete Route
+app.delete('/deleteStock', (PostmanReq, PostmanRes)=> {
+
+    //delete request to heroku app
+    axios.delete('https://codubee-projects-api.herokuapp.com/stocks/deleteStock?userId=' +PostmanReq.query.userId + '&stockId='+PostmanReq.query.stockId).then( (herokuResponse) => {
+
+    PostmanRes.status(200).json(herokuResponse.data); }) 
+    .catch((error) =>{
+        
+        console.log(error)
+    })
+})
+
+
+
 app.listen( process.env.PORT || 8080, () => console.log('Example app listening at http://localhost:8080'))
+
