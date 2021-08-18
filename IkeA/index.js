@@ -88,7 +88,6 @@ app.get('/yelpEventDetail', (req, res) =>
     const config = { headers: { 'Authorization': 'Bearer ' + process.env.API_TOKEN } }
 
     var url = 'https://api.yelp.com/v3/events/oakland-saucy-oakland-restaurant-pop-up'
-    console.log(url)
 
     // Include the object that contains the token in the GET request
     axios.get(url, config)
