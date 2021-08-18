@@ -77,7 +77,7 @@ app.get('/getDetails', function (request,response)
         response.json({ 'message': 'There was an error' })
     })
 })
-//route to get the a specific event based on parameters
+//route to get the a specific event based on the given location
 app.get('/events', function (request,response)
 {
     const config = {headers:{'Authorization':'Bearer '+ process.env.API_TOKEN}}//holds the token
