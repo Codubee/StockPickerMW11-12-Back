@@ -2,6 +2,8 @@ const express = require('express')
 const app = express()
 const axios = require('axios')
 app.use(express.json())
+var cors = require('cors')
+app.use(cors())
 
 // Route to get a stock from the database of stocks.
 // Use GET route with a path of /getStockData
