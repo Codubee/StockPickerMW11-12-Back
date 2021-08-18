@@ -4,6 +4,7 @@ const express = require('express')
 const app = express()
 const axios = require('axios')
 app.use(express.json())
+require('dotenv').config();
 
 // Creates a POST route with a path of /addPerson
 // Calls the URL: http://java-sample-api-2020.herokuapp.com/addPerson
@@ -47,6 +48,71 @@ app.delete('/deletePerson', (req, res) => {
         res.status(200).json({'message':'there was an error'});
     })
 })
+
+// GET https://api.yelp.com/v3/businesses/search
+// Create a GET route with a path of /searchYelp to connect to yelps search api.
+app.get('/searchYelp', (req, res) =>
+{
+    // Yelp token.
+    const config = { headers: { 'Authorization': 'Bearer ' + process.env.API_TOKEN } }
+    var url = 'https://api.yelp.com/v3/businesses/search?term=Muji&location=NYC'
+
+    // Include config.
+    axios.get(url, config)
+        .then((yelpRes) =>
+        {
+            res.json(yelpRes.data)
+        })
+        .catch((err) =>
+        {
+            res.json({ "Msg": "Error with request" })
+        })
+})
+
+
+// GET https://api.yelp.com/v3/events/{id}
+// Create a route with a path of /yelpEvent to get the details of a yelp event.
+app.get('/yelpEvent', (req, res) =>
+{
+    // Yelp token.
+    const config = { headers: { 'Authorization': 'Bearer ' + process.env.API_TOKEN } }
+    var url = 'https://api.yelp.com/v3/events/oakland-yelps-community-cleanup-day'
+
+    // Include config.
+    axios.get(url, config)
+        .then((yelpRes) =>
+        {
+            res.json(yelpRes.data)
+        })
+        .catch((err) =>
+        {
+            res.json({ "Msg": "Error with request" })
+        })
+})
+
+
+// GET https://api.yelp.com/v3/events
+// Create a route with a path of /yelpEventAPI to connect to yelps event api.
+app.get('/yelpEventAPI', (req, res) =>
+{
+    // Yelp token.
+    const config = { headers: { 'Authorization': 'Bearer ' + process.env.API_TOKEN } }
+
+    var location = req.query.location
+    var url = 'https://api.yelp.com/v3/events?location=' + location
+
+    // Include config.
+    axios.get(url, config)
+        .then((yelpRes) =>
+        {
+            res.json(yelpRes.data)
+        })
+        .catch((err) =>
+        {
+            res.json({ "Msg": "Error with request" })
+        })
+})
+
 
 // Listen for incoming requests.
 // Test route paths.
