@@ -3,6 +3,7 @@ const express = require('express')
 const app = express()
 const axios = require('axios')
 app.use(express.json())
+require('dotenv').config();
 
 // Create a POST route with a path of /addPerson
 app.post('/addPerson', (req, res) =>
@@ -56,6 +57,71 @@ app.delete('/deletePerson', (req, res) =>
         .catch((error) =>
         {
             res.status(500).json({ 'message': 'There was an error' })
+        })
+})
+
+// GET https://api.yelp.com/v3/businesses/search
+// Create a GET route with a path of /searchYelp to connect to yelps search api
+app.get('/searchYelp', (req, res) =>
+{
+    // Save the yelp token in a config variable
+    const config = { headers: { 'Authorization': 'Bearer ' + process.env.API_TOKEN } }
+
+    // Include the object that contains the token in the GET request
+    axios.get('https://api.yelp.com/v3/businesses/search?latitude=37.787789124691&longitude=-122.399305736113', config)
+        .then((yelpRes) =>
+        {
+            res.json(yelpRes.data)
+        })
+        .catch((err) =>
+        {
+            console.log(err)
+            res.json({ "msg": "Error with request" })
+        })
+})
+
+// GET https://api.yelp.com/v3/events/{id}
+// Create a route to get the details of an event
+app.get('/yelpEventDetail', (req, res) =>
+{
+    // Save the yelp token in a config variable
+    const config = { headers: { 'Authorization': 'Bearer ' + process.env.API_TOKEN } }
+
+    var url = 'https://api.yelp.com/v3/events/oakland-saucy-oakland-restaurant-pop-up'
+
+    // Include the object that contains the token in the GET request
+    axios.get(url, config)
+        .then((yelpRes) =>
+        {
+            res.json(yelpRes.data)
+        })
+        .catch((err) =>
+        {
+            console.log(err)
+            res.json({ err })
+        })
+})
+
+// GET https://api.yelp.com/v3/events
+// Create a route to connect to yelps event api
+app.get('/yelpEventAPI', (req, res) =>
+{
+    // Save the yelp token in a config variable
+    const config = { headers: { 'Authorization': 'Bearer ' + process.env.API_TOKEN } }
+
+    var location = req.query.location
+    var url = 'https://api.yelp.com/v3/events?location=' + location
+
+    // Include the object that contains the token in the GET request
+    axios.get(url, config)
+        .then((yelpRes) =>
+        {
+            res.json(yelpRes.data)
+        })
+        .catch((err) =>
+        {
+            console.log(err)
+            res.json({ "msg": "Error with request" })
         })
 })
 
